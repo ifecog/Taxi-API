@@ -42,6 +42,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    
+    'phonenumber_field',
 ]
 
 MIDDLEWARE = [
@@ -77,6 +79,8 @@ WSGI_APPLICATION = 'taxi.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
+
+AUTH_USER_MODEL = 'users.User'
 
 DATABASES = {
     'default': {
