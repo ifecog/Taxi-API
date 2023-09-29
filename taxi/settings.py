@@ -77,6 +77,8 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'taxi.wsgi.application'
 
+ASGI_APPLICATION = 'taxi.routing.application'
+
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
