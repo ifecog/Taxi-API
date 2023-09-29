@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     
     'channels',
     'phonenumber_field',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
