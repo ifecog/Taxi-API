@@ -1,20 +1,21 @@
 from typing import Dict, Any
 
+from django.contrib.auth import get_user_model
+
 from rest_framework import serializers
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer, RefreshToken
 
 from users.models import User
 
-
 class UserSerializer(serializers.ModelSerializer):
     _id = serializers.SerializerMethodField(read_only=True)
     name = serializers.SerializerMethodField(read_only=True)
     is_admin = serializers.SerializerMethodField(read_only=True)
-    confirm_password = serializers.SerializerMethodField(write_only=True)
+    confirm_password = serializers.CharField(write_only=True)
     
     class Meta:
-        model = User
-        fields = ['id', '_id', 'email', 'phone_number', 'password']
+        model = get_user_model()
+        fields = ['id', '_id', 'name', 'email', 'phone_number', 'confirm_password', 'is_admin']
         
     def get__id(self, obj):
         return obj.id
@@ -49,7 +50,7 @@ class UserSerializerWithToken(UserSerializer):
     token = serializers.SerializerMethodField(read_only=True)
     
     class Meta:
-        model = User
+        model = get_user_model()
         fields = ['id', '_id', 'name', 'email', 'phone_number', 'is_admin', 'token']
         
     def get_token(self, obj):
@@ -58,4 +59,15 @@ class UserSerializerWithToken(UserSerializer):
         return str(token.access_token)
     
     
+class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
+    token_class = RefreshToken
 
+    def validate(self, attrs: Dict[str, Any]) -> Dict[str, str]:
+        data = super().validate(attrs)
+        
+        serializer = UserSerializerWithToken(self.user).data
+
+        for key, value in serializer.items():
+            data[key] = value
+        
+        return data
