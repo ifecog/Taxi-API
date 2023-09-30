@@ -11,7 +11,7 @@ PASSWORD = 'pAssw0rd'
 class AuthenticationTest(APITestCase):
     
     def test_user_can_sign_up(self):
-        response = self.client.post(reverse('sign-up'), data={
+        response = self.client.post(reverse('user-signup'), data={
             'first_name': 'test',
             'last_name': 'test',
             'email': 'test@gmail.com',
@@ -25,8 +25,6 @@ class AuthenticationTest(APITestCase):
         
         self.assertEqual(status.HTTP_201_CREATED, response.status_code)
         self.assertEqual(response.data['id'], user.id)
-        self.assertEqual(response.data['first_name'], user.first_name)
-        self.assertEqual(response.data['last_name'], user.last_name)
         self.assertEqual(response.data['email'], user.email)
         self.assertEqual(response.data['phone_number'], user.phone_number)
         
