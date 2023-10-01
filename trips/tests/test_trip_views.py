@@ -7,7 +7,7 @@ from rest_framework.test import APITestCase
 from .test_user_views import create_user, PASSWORD
 
 from trips.serializers.trip_serializers import *
-from trips.models import *
+from trips.models import Trip
 
 
 class HttpTripTest(APITestCase):
