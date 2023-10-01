@@ -1,5 +1,5 @@
 # Taxi-API
-Taxi API is a real time, fully-functional, robust, and scallable REST API. 
+Taxi API is a real time, fully-functional, robust, and scalable REST API. 
 
 ## Table of Contents
 * [General Info](#general-info)
