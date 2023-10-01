@@ -11,13 +11,9 @@ from trips.serializers.trip_serializers import TripSerializer
 from trips.models import Trip
 
 
-# class TripViewSet(viewsets.ReadOnlyModelViewSet):
-#     queryset = Trip.objects.order_by('-created_time')
-#     serializer_class = TripSerializer
-
 class TripViewSet(viewsets.ViewSet):
     
-    @action(detail=False, methods=['get'])
+    @action(detail=False, methods=['get'], permission_classes=[IsAuthenticated])
     def trip_list(self, request):
         trips = Trip.objects.order_by('-created_time')
         serializer = TripSerializer(trips, many=True)
