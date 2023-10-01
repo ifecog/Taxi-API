@@ -69,7 +69,7 @@ Download and install PostgreSQL
 ```
 https://www.postgresql.org/download/windows/
 ```
-download and install Redis and n a new terminal window, start the Redis server. Make sure that it is running on its default port, 6379.
+Download and install Redis and in a new terminal window, start the Redis server. Make sure that it is running on its default port, 6379.
 ```
 $ redis-server
 ```
