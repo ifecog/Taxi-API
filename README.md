@@ -52,7 +52,7 @@ Whether you're building a ride-sharing service from the ground up or enhancing a
 ## Setup
 Download and install Python
 ```
-(https://www.python.org/downloads/)
+* [Python Download](https://www.python.org/downloads/)
 ```
 Create project directory and enable virtual environment
 ```
