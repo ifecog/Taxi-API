@@ -50,9 +50,22 @@ Whether you're building a ride-sharing service from the ground up or enhancing a
 * [Postman](https://www.postman.com/)
 
 ## Setup
-To run this project, here are the installations
+Create project directory and enable virtual environment
 ```
 $ cd ../project_directory
 $ python -m venv myenv
+$ venv\Scripts\activate
 ```
-
+Install all necessary libraries and frameworks using pip
+```
+$ pip install \
+  channels==2.3.1 \
+  channels-redis==2.4.1 \
+  Django==2.2.8 \
+  djangorestframework==3.10.3 \
+  djangorestframework-simplejwt==4.4.0 \
+  Pillow==6.2.1 \
+  psycopg2-binary==2.8.4 \
+  pytest-asyncio==0.10.0 \
+  pytest-django==3.7.0
+```
