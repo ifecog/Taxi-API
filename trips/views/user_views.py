@@ -10,6 +10,8 @@ from rest_framework_simplejwt.views import TokenObtainPairView
 
 from ..serializers.user_serializers import UserSerializer, UserSerializerWithToken, LoginSerializer
 
+
+User = get_user_model()
 # Create your views here.
 class UserViewSet(viewsets.ViewSet):
     
@@ -42,10 +44,9 @@ class UserViewSet(viewsets.ViewSet):
         return Response(serializer.data, status=status.HTTP_201_CREATED)
     
     
-    @action(detail=False, methods=['get'])
+    @action(detail=False, methods=['get'], permission_classes=[IsAdminUser])
     def get_users(self, request):
-        User = get_user_model()
-        users = User.objects.all()
+        users = User.objects.order_by('-id')
         serializer = UserSerializer(users, many=True)
         
         return Response(serializer.data)
