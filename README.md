@@ -69,11 +69,11 @@ Download and install PostgreSQL
 ```
 https://www.postgresql.org/download/windows/
 ```
-download and install Redis. In a new terminal window, start the Redis server 13 and make sure that it is running on its default port, 6379.
+download and install Redis and n a new terminal window, start the Redis server. Make sure that it is running on its default port, 6379.
 ```
 $ redis-server
 ```
-If you’re on a Mac, we recommend using Homebrew for both PostgreSQL and Redis:
+If you’re on a Mac, it is recommended that you use Homebrew for both PostgreSQL and Redis:
 ```
 $ brew install postgresql
 $ brew services start postgresql
