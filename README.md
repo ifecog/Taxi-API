@@ -50,6 +50,10 @@ Whether you're building a ride-sharing service from the ground up or enhancing a
 * [Postman](https://www.postman.com/)
 
 ## Setup
+Download and install Python
+```
+(https://www.python.org/downloads/)
+```
 Create project directory and enable virtual environment
 ```
 $ cd ../project_directory
