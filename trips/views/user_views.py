@@ -8,7 +8,7 @@ from rest_framework.decorators import action
 from rest_framework.permissions import IsAdminUser, IsAuthenticated
 from rest_framework_simplejwt.views import TokenObtainPairView
 
-from ..serializers.user_serializers import UserSerializer, UserSerializerWithToken, MyTokenObtainPairSerializer
+from ..serializers.user_serializers import UserSerializer, UserSerializerWithToken, LoginSerializer
 
 # Create your views here.
 class UserViewSet(viewsets.ViewSet):
@@ -51,5 +51,5 @@ class UserViewSet(viewsets.ViewSet):
         return Response(serializer.data)
 
 
-class MyTokenObtainPairView(TokenObtainPairView):
-    serializer_class = MyTokenObtainPairSerializer
+class LoginView(TokenObtainPairView):
+    serializer_class = LoginSerializer

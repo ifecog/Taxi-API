@@ -49,7 +49,7 @@ class UserSerializerWithToken(UserSerializer):
         return str(token.access_token)
     
     
-class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
+class LoginSerializer(TokenObtainPairSerializer):
     token_class = RefreshToken
 
     def validate(self, attrs: Dict[str, Any]) -> Dict[str, str]:
