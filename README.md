@@ -52,7 +52,7 @@ Whether you're building a ride-sharing service from the ground up or enhancing a
 ## Setup
 Download and install Python
 ```
-* [Python Download](https://www.python.org/downloads/)
+https://www.python.org/downloads/
 ```
 Create project directory and enable virtual environment
 ```
@@ -72,4 +72,40 @@ $ pip install \
   psycopg2-binary==2.8.4 \
   pytest-asyncio==0.10.0 \
   pytest-django==3.7.0
+```
+To create Django project:
+```
+$ django-admin startproject taxiproject .
+```
+To create django app:
+```
+$ python manage.py start app taxi
+```
+To make migrations
+```
+python manage.py makemigrations
+$ python manage.py migrate
+```
+To run the application:
+```
+$ python manage.py runserver
+```
+Download and install PostgreSQL
+```
+https://www.postgresql.org/download/windows/
+```
+download and install Redis. In a new terminal window, start the Redis server 13 and make sure that it is running on its default port, 6379.
+```
+$ redis-server
+```
+If you’re on a Mac, we recommend using Homebrew for both PostgreSQL and Redis:
+```
+$ brew install postgresql
+$ brew services start postgresql
+$ brew install redis
+$ brew services start redis
+```
+Connect to Postgres using the psql client.
+```
+$(env) psql -U postgres
 ```
