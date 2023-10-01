@@ -38,13 +38,13 @@ Key Features:
 Whether you're building a ride-sharing service from the ground up or enhancing an existing one, this Taxi REST API forms the foundation for seamless, real-time rider-driver interactions, offering users an unparalleled and reliable transportation experience.
 
 ## Technologies
-* Python
-* PostgreSQL
-* Django
-* Django Rest Framework
-* Django Channels
-* Django Rest Framework SimpleJWT
-* Django ORM
-* Redis
-* Python Unit Test module
-* PyTest
+* [Python](https://www.python.org/)
+* [PostgreSQL](https://www.postgresql.org/)
+* [Django](https://www.djangoproject.com/)
+* [Django Rest Framework](https://www.django-rest-framework.org/)
+* [Django Channels](https://channels.readthedocs.io/en/latest/)
+* [Django Rest Framework SimpleJWT](https://django-rest-framework-simplejwt.readthedocs.io/en/latest/)
+* [Redis](https://redis.io/)
+* [Python Unit Test module](https://docs.python.org/3/library/unittest.html)
+* [PyTest](https://docs.pytest.org/en/latest/)
+
