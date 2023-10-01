@@ -81,9 +81,9 @@ To create django app:
 ```
 $ python manage.py start app taxi
 ```
-To make migrations
+To make migrations:
 ```
-python manage.py makemigrations
+$ python manage.py makemigrations
 $ python manage.py migrate
 ```
 To run the application:
