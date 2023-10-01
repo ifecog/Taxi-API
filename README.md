@@ -49,3 +49,9 @@ Whether you're building a ride-sharing service from the ground up or enhancing a
 * [PyTest](https://docs.pytest.org/en/latest/)
 * [Postman](https://www.postman.com/)
 
+## Setup
+To run this project, here are the installations
+$ cd ../project_directory
+$ python -m venv myenv
+
+
