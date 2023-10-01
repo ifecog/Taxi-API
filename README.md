@@ -36,3 +36,15 @@ Key Features:
     User Authentication: Robust user authentication mechanisms safeguard the integrity of the platform.
 
 Whether you're building a ride-sharing service from the ground up or enhancing an existing one, this Taxi REST API forms the foundation for seamless, real-time rider-driver interactions, offering users an unparalleled and reliable transportation experience.
+
+## Technologies
+* Python
+* PostgreSQL
+* Django
+* Django Rest Framework
+* Django Channels
+* Django Rest Framework SimpleJWT
+* Django ORM
+* Redis
+* Python Unit Test module
+* PyTest
