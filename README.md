@@ -6,6 +6,7 @@ Taxi API is a real time, fully-functional, robust, and scalable REST API.
 * [Technologies](#technologies)
 * [Setup](#setup)
 * [Features](#features)
+* [Sources](#sources)
 
 ## General Info
 Many modern ride-sharing apps rely on efficient, real-time, and bi-directional communication to provide users with a seamless and exceptional experience. One prime example is a ride-sharing platform akin to Uber, InDrive, Bolt, or Lyft, which is intricately built on the exchange of messages between riders and drivers. This Taxi REST API facilitates the core functionality of such a service.
@@ -110,3 +111,6 @@ Key Features:
     Geospatial Integration: Leveraging geospatial data, the API accurately determines driver availability and trip routing.
 
     User Authentication: Robust user authentication mechanisms safeguard the integrity of the platform.
+
+## Sources
+This API is inspired by Andrew Kaliba's 'Developing a Real-Time Taxi App with Django Channels and React' [@testdrivenio](https://github.com/testdrivenio/taxi-react-app.git)
