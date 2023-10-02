@@ -113,4 +113,4 @@ Key Features:
     User Authentication: Robust user authentication mechanisms safeguard the integrity of the platform.
 
 ## Sources
-This API is inspired by Andrew Kaliba's 'Developing a Real-Time Taxi App with Django Channels and React' [@testdrivenio](https://github.com/testdrivenio/taxi-react-app.git)
+This REST API is inspired by Andrew Kaliba's 'Developing a Real-Time Taxi App with Django Channels and React' [@testdrivenio](https://github.com/testdrivenio/taxi-react-app.git)
