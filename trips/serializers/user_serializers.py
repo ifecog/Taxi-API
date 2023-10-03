@@ -35,6 +35,15 @@ class UserSerializer(serializers.ModelSerializer):
     def get_is_admin(self, obj):
         return obj.is_staff
     
+    def validate(self, data):
+        # Add custom validation for password confirmation
+        password = data.get('password')
+        confirm_password = data.get('confirm_password')
+        if password != confirm_password:
+            raise serializers.ValidationError('Passwords do not match.')
+        
+        return data
+    
 
 class UserSerializerWithToken(UserSerializer):
     token = serializers.SerializerMethodField(read_only=True)
