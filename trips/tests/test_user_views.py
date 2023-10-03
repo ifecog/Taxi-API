@@ -61,7 +61,7 @@ class AuthenticationTest(APITestCase):
         header, payload, signature = access_token.split('.')
         decoded_payload = base64.b64decode(f'{payload}==')
         payload_data = json.loads(decoded_payload)
-        print(payload_data)
+        # print(payload_data)
         
         self.assertEqual(payload_data['user_id'], user.id)
         

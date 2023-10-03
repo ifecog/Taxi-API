@@ -13,7 +13,7 @@ class USerSerializersTest(APITestCase):
             'confirm_password': 'mysecretpassword',
         }
         serializer = UserSerializer(data=data)
-        if not serializer.is_valid():
-            print(serializer.errors)  # Print validation errors
-            print(serializer.data)
+        # if not serializer.is_valid():
+        #     print(serializer.errors)  # Print validation errors
+        #     print(serializer.data)
         self.assertTrue(serializer.is_valid())
