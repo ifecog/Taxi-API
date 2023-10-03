@@ -16,7 +16,8 @@ class UserSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = get_user_model()
-        fields = ['id', '_id', 'name', 'email', 'phone_number', 'is_admin', 'confirm_password']
+        fields = ['id', '_id', 'name', 'email', 'phone_number', 'is_admin', 'password', 'confirm_password']
+        extra_kwargs = {'password': {'write_only': True}}
         
     def get__id(self, obj):
         return obj.id
