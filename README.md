@@ -123,4 +123,4 @@ Contributions to Cartify are welcome and encouraged! If you have any bug reports
 
 ## License
 
-Cartify is licensed under the [MIT License](https://github.com/ifecog/Cartify/blob/main/LICENSE). You are free to use, modify, and distribute the application for personal or commercial purposes.
+Cartify is licensed under the [MIT License](https://github.com/ifecog/Taxi-API/blob/main/LICENSE). You are free to use, modify, and distribute the application for personal or commercial purposes.
