@@ -7,6 +7,8 @@ Taxi API is a real time, fully-functional, robust, and scalable REST API.
 * [Setup](#setup)
 * [Features](#features)
 * [Sources](#sources)
+* [Contributions](#contributions)
+* [License](#license)
 
 ## General Info
 Many modern ride-sharing apps rely on efficient, real-time, and bi-directional communication to provide users with a seamless and exceptional experience. One prime example is a ride-sharing platform akin to Uber, InDrive, Bolt, or Lyft, which is intricately built on the exchange of messages between riders and drivers. This Taxi REST API facilitates the core functionality of such a service.
@@ -114,3 +116,11 @@ Key Features:
 
 ## Sources
 This REST API is inspired by Andrew Kaliba's 'Developing a Real-Time Taxi App with Django Channels and React' [@testdrivenio](https://github.com/testdrivenio/taxi-react-app.git)
+
+## Contributions
+
+Contributions to Cartify are welcome and encouraged! If you have any bug reports, feature requests, or improvements, please submit them as issues or pull requests on the GitHub repository.
+
+## License
+
+Cartify is licensed under the [MIT License](https://github.com/ifecog/Cartify/blob/main/LICENSE). You are free to use, modify, and distribute the application for personal or commercial purposes.
