@@ -15,15 +15,16 @@ def create_trip():
 class TripModelTestCase(TestCase):
     
     def test_create_trip(self):
-        # create anew trip instance
         trip = create_trip()
-        # check that the trip was created successfuly
+        
         self.assertIsNotNone(trip.id)
         self.assertEqual(trip.status, Trip.REQUESTED)
         
-        # # get the absolute url for trip
-        # absolute_url = trip.get_absolute_url()
+    
+    def test_str_representation(self):
+        # Create a Trip instance
+        trip = create_trip()
         
-        # # check that the absolute url matches the expexted_url
-        # expected_url = reverse('trip:trip_detail', kwargs={'trip_id': trip.id})
-        # self.assertEqual(absolute_url, expected_url)
+        # Check that the string representation matches the expected format
+        expected_str = f'{trip.id}'
+        self.assertEqual(str(trip), expected_str)

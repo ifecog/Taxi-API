@@ -19,3 +19,12 @@ class TripViewSet(viewsets.ViewSet):
         serializer = TripSerializer(trips, many=True)
         
         return Response(serializer.data)
+    
+    
+    @action(detail=True, methods=['get'], permission_classes=[IsAuthenticated])   
+    def trip_detail(self, request, pk=None):
+        trip = get_object_or_404(Trip, id=pk)
+        serializer = TripSerializer(trip, many=False)
+    
+
+        return Response(serializer.data)

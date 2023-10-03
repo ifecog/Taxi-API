@@ -6,7 +6,7 @@ router = DefaultRouter()
 router.register(r'trips', TripViewSet, basename='trip')
 
 urlpatterns = [
-
+    
 ]
 
 urlpatterns += router.urls
