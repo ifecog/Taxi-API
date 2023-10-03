@@ -21,8 +21,9 @@ class HttpTripTest(APITestCase):
         
     def test_user_can_list_trips(self):
         trips = [
-            Trip.objects.create(pickup_address='A', dropoff_address='B'),
-            Trip.objects.create(pickup_address='B', dropoff_address='C')
+            Trip.objects.create(pickup_latitude=37.7749, pickup_longitude=-122.4194, dropoff_latitude=37.8072, dropoff_longitude=-122.4056),
+            Trip.objects.create(pickup_latitude=37.8849, pickup_longitude=-122.6194, dropoff_latitude=37.9072, dropoff_longitude=-122.4156),
+            # Trip.objects.create(pickup_address='B', dropoff_address='C')
         ]
         response = self.client.get(reverse('trip-trip-list'), HTTP_AUTHORIZATION=f'Bearer {self.access}')
         self.assertEqual(status.HTTP_200_OK, response.status_code)

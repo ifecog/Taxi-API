@@ -9,7 +9,7 @@ class TripAdmin(admin.ModelAdmin):
 
     fieldsets = (
         ('Trip Information', {
-            'fields': ('id', 'pickup_address', 'dropoff_address', 'status')
+            'fields': ('id', 'pickup_latitude', 'pickup_longitude', 'dropoff_latitude', 'dropoff_longitude', 'status')
         }),
         ('Timestamps', {
             'fields': ('created_time', 'updated_time'),
