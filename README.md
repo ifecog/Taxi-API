@@ -1,5 +1,5 @@
 # Taxi-API
-Taxi API is a real time, fully-functional, robust, and scalable REST API. 
+Taxi API is a real-time, fully-functional REST API that enables transportation technology companies to deliver seamless and efficient customer experiences. 
 
 ## Table of Contents
 * [General Info](#general-info)
