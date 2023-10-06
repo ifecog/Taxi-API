@@ -4,6 +4,7 @@ from channels.testing import WebsocketCommunicator
 from taxi.routing import application
 
 
+
 TEST_CHANNEL_LAYERS = {
     'default': {
         'BACKEND': 'channels.layers.InMemoryChannelLayer',
@@ -21,4 +22,21 @@ class TestWebSocket:
         )
         connected, _ = await communicator.connect()
         assert connected is True
+        await communicator.disconnect()
+        
+        
+    async def test_can_send_and_recieve_messages(self, settings):
+        settings.CHANNEL_LAYERS = TEST_CHANNEL_LAYERS
+        communicator = WebsocketCommunicator(
+            application=application,
+            path='/taxi/'
+        )
+        connerted, _ = await communicator.connect()
+        message = {
+            'type': 'echo.message',
+            'data': 'This is a test message.',
+        }
+        await communicator.send_json_to(message)
+        response = await communicator.receive_json_from()
+        assert response == message
         await communicator.disconnect()
