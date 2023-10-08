@@ -4,6 +4,7 @@ from channels.testing import WebsocketCommunicator
 from channels.layers import get_channel_layer
 
 from django.contrib.auth import get_user_model
+from django.contrib.auth.models import Group
 
 from rest_framework_simplejwt.tokens import AccessToken
 
@@ -20,11 +21,19 @@ TEST_CHANNEL_LAYERS = {
 }
 
 @DatabaseSyncToAsync
-def create_user(email, password):
+def create_user(email, password, group='rider'):
+    # Create user
     user = User.objects.create_user(
         email=email,
         password=password
     )
+    
+    # Create user group
+    user_group, _ = Group.objects.get_or_create(name=Group)
+    user.groups.add(user_group)
+    user.save()
+    
+    # Create access token
     access = AccessToken.for_user(user)
     
     return user, access
@@ -94,3 +103,27 @@ class TestWebSocket:
         )
         connected, _ = await communicator.connect()
         assert connected is False
+        
+        
+    async def test_join_driver_pool(self, settings):
+        settings.CHANNEL_LAYERS = TEST_CHANNEL_LAYERS
+        _, access = await create_user(
+            'test.user@example.com', 'pAssw0rd', 'driver'
+        )
+        communicator = WebsocketCommunicator(
+            application=application,
+            path=f'taxi/?token={access}'
+        )
+        connected, _ = await communicator.connect()
+        message = {
+            'type': 'echo.message',
+            'data': 'this is a test message'
+        }
+        channel_layer = get_channel_layer()
+        await channel_layer.group_send('drivers', message=message)
+        response = await communicator.recieve_json_from()
+        assert response == message
+        await communicator.disconnect()
+        
+        
+        
