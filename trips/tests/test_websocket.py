@@ -1,5 +1,5 @@
 import pytest
-from channels.db import DatabaseSyncToAsync
+from channels.db import database_sync_to_async, DatabaseSyncToAsync
 from channels.testing import WebsocketCommunicator
 from channels.layers import get_channel_layer
 
@@ -20,7 +20,7 @@ TEST_CHANNEL_LAYERS = {
     },
 }
 
-@DatabaseSyncToAsync
+@database_sync_to_async
 def create_user(email, password, group='rider'):
     # Create user
     user = User.objects.create_user(
@@ -29,7 +29,7 @@ def create_user(email, password, group='rider'):
     )
     
     # Create user group
-    user_group, _ = Group.objects.get_or_create(name=Group)
+    user_group, _ = Group.objects.get_or_create(name=group)
     user.groups.add(user_group)
     user.save()
     
@@ -112,7 +112,8 @@ class TestWebSocket:
         )
         communicator = WebsocketCommunicator(
             application=application,
-            path=f'taxi/?token={access}'
+            path=f'/taxi/?token={access}',
+            timeout=30
         )
         connected, _ = await communicator.connect()
         message = {
@@ -121,7 +122,7 @@ class TestWebSocket:
         }
         channel_layer = get_channel_layer()
         await channel_layer.group_send('drivers', message=message)
-        response = await communicator.recieve_json_from()
+        response = await communicator.receive_json_from()
         assert response == message
         await communicator.disconnect()
         
