@@ -13,8 +13,6 @@ Taxi API is a real-time, fully-functional REST API that enables transportation t
 ## General Info
 Many modern ride-sharing apps rely on efficient, real-time, and bi-directional communication to provide users with a seamless and exceptional experience. One prime example is a ride-sharing platform akin to Uber, InDrive, Bolt, or Lyft, which is intricately built on the exchange of messages between riders and drivers. This Taxi REST API facilitates the core functionality of such a service.
 
-Whether you're building a ride-sharing service from the ground up or enhancing an existing one, this Taxi REST API forms the foundation for seamless, real-time rider-driver interactions, offering users an unparalleled and reliable transportation experience.
-
 ## Technologies
 * [Python](https://www.python.org/)
 * [PostgreSQL](https://www.postgresql.org/)
