@@ -1,5 +1,6 @@
 import uuid
 
+from django.conf import settings
 from django.db import models
 from django.urls import reverse
 
@@ -29,6 +30,20 @@ class Trip(models.Model):
     last_location_update = models.DateTimeField(null=True, blank=True)
     status = models.CharField(
         max_length=20, choices=STATUSES, default=REQUESTED
+    )
+    driver = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        null=True,
+        blank=True,
+        on_delete=models.DO_NOTHING,
+        related_name='trips_as_driver'
+    )
+    rider = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        null=True,
+        blank=True,
+        on_delete=models.DO_NOTHING,
+        related_name='trips_as_rider'
     )
     
     def __str__(self):
