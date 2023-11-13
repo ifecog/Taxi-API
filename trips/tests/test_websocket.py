@@ -113,9 +113,15 @@ class TestWebSocket:
         communicator = WebsocketCommunicator(
             application=application,
             path=f'/taxi/?token={access}',
-            timeout=30
         )
+        
+        # Print WebSocket URL and Access Token
+        print(f"WebSocket URL: {communicator.scope['path']}")
+        print(f"Access token: {access}")
+        
         connected, _ = await communicator.connect()
+        print(f"WebSocket connected: {connected}")
+        
         message = {
             'type': 'echo.message',
             'data': 'this is a test message'
