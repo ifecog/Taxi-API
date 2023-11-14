@@ -133,4 +133,36 @@ class TestWebSocket:
         await communicator.disconnect()
         
         
+    async def test_request_trip(self, settings):
+        settings.CHANNEL_LAYERS = TEST_CHANNEL_LAYERS
+        user, access = await create_user(
+            'test.user@example.com', 'pAssw0rd', 'rider'
+        )
+        communicator = WebsocketCommunicator(
+            application=application,
+            path=f'/taxi/?token={access}'
+        )
+        connected, _ = await communicator.connect()
+        await communicator.send_json_to({
+            'type': 'create.trip',
+            'data': {
+                'pickup_latitude': '37.8849',
+                'pickup_longitude': '-122.6194',
+                'dropoff_latitude': '37.9072',
+                'dropoff_longitude': '-122.4156',
+                'rider': user.id,
+            },
+        })
+        response = await communicator.receive_json_from()
+        response_data = response.get('data')
+        assert response_data['id'] is not None
+        assert response_data['pickup_latitude'] == '37.8849'
+        assert response_data['pickup_longitude'] == '-122.6194'
+        assert response_data['dropoff_latitude'] == '37.9072'
+        assert response_data['dropoff_longitude'] == '-122.4156'
+        assert response_data['status'] == 'REQUESTED'
+        assert response_data['rider']['username'] == user.username
+        assert response_data['driver'] is None
+        await communicator.disconnect()
+        
         
