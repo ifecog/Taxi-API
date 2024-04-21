@@ -35,7 +35,7 @@ class HttpTripTest(APITestCase):
     def test_user_can_list_trips(self):
         trips = [create_first_trip(), create_second_trip()]
         
-        response = self.client.get(reverse('trip-trip-list'), HTTP_AUTHORIZATION=f'Bearer {self.access}')
+        response = self.client.get(reverse('trips-list'), HTTP_AUTHORIZATION=f'Bearer {self.access}')
         
         self.assertEqual(status.HTTP_200_OK, response.status_code)
         
@@ -48,7 +48,7 @@ class HttpTripTest(APITestCase):
     def test_user_can_view_trip_detail(self):
         trip = create_first_trip()
         
-        expected_url = reverse('trip-trip-detail', kwargs={'pk': trip.id})
+        expected_url = reverse('trip-details', kwargs={'trip_id': trip.id})
         
         response = self.client.get(expected_url, HTTP_AUTHORIZATION=f'Bearer {self.access}')
 
