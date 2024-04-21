@@ -44,7 +44,7 @@ def signup(request):
         return Response(detail, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['GET'])
-@permission_classes([IsAdminUser])
+# @permission_classes([IsAdminUser])
 def get_users(request):
     users = User.objects.order_by('-id')
     serializer = UserSerializer(users, many=True)
