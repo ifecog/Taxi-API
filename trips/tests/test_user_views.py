@@ -24,7 +24,7 @@ def create_user(email='test@gmail.com', password=PASSWORD):
 
 class AuthenticationTest(APITestCase):
     
-    def test_user_can_sign_up(self):
+    def test_user_can_signup(self):
         response = self.client.post(reverse('user-signup'), data={
             'first_name': 'test',
             'last_name': 'test',
@@ -43,9 +43,9 @@ class AuthenticationTest(APITestCase):
         self.assertEqual(response.data['phone_number'], user.phone_number)
         
     
-    def test_user_can_login(self):
+    def test_user_can_signin(self):
         user = create_user()
-        response = self.client.post(reverse('user-login'), data={
+        response = self.client.post(reverse('user-signin'), data={
             'email': user.email,
             'password': PASSWORD,
         }, format='json')

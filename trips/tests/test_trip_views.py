@@ -25,7 +25,7 @@ class HttpTripTest(APITestCase):
     
     def setUp(self):
         user = create_user()
-        response = self.client.post(reverse('user-login'), data={
+        response = self.client.post(reverse('user-signin'), data={
             'email': user.email,
             'password': PASSWORD
         })
