@@ -1,12 +1,7 @@
 from django.urls import path
-from rest_framework.routers import DefaultRouter
-from trips.views.trip_views import TripViewSet
-
-router = DefaultRouter()
-router.register(r'trips', TripViewSet, basename='trip')
+from trips.views.trip_views import trips_list, trip_details
 
 urlpatterns = [
-    
+    path('', trips_list, name='trips-list'),
+    path('<uuid:trip_id>/', trip_details, name='trip-details'),
 ]
-
-urlpatterns += router.urls
