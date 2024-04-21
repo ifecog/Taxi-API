@@ -1,13 +1,7 @@
 from django.urls import path
-from rest_framework.routers import DefaultRouter
-from trips.views.user_views import UserViewSet, LoginView
-
-router = DefaultRouter()
-router.register(r'users', UserViewSet, basename='user')
+from trips.views.user_views import signup, get_users
 
 urlpatterns = [
-    path('users/login/', LoginView.as_view(), name='user-login'),
-    # Other app-specific URL patterns if any
+    path('signup/', signup, name='signup'),
+    path('get_users/', get_users, name='get_users'),
 ]
-
-urlpatterns += router.urls
