@@ -1,5 +1,5 @@
 import pytest
-from channels.db import database_sync_to_async, DatabaseSyncToAsync
+from channels.db import DatabaseSyncToAsync, database_sync_to_async
 from channels.testing import WebsocketCommunicator
 from channels.layers import get_channel_layer
 
@@ -66,7 +66,7 @@ class TestWebSocket:
             application=application,
             path='/taxi/'
         )
-        connerted, _ = await communicator.connect()
+        connected, _ = await communicator.connect()
         message = {
             'type': 'echo.message',
             'data': 'This is a test message.',

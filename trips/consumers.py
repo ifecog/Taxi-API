@@ -4,9 +4,9 @@ from channels.db import database_sync_to_async
 from trips.serializers.trip_serializers import TripSerializer, NestedTripSerializer 
 
 
-# @database_sync_to_async
-# def _get_user_group(self, user):
-#     return user.groups.first().name
+@database_sync_to_async
+def _get_user_group(self, user):
+    return user.groups.first().name
 
 
 class TaxiConsumer(AsyncJsonWebsocketConsumer):
@@ -29,7 +29,7 @@ class TaxiConsumer(AsyncJsonWebsocketConsumer):
             user_group = await self._get_user_group(user)
             if user_group == 'driver':
                 await self.channel_layer.group_add(
-                    group='test',
+                    group='drivers',
                     channel=self.channel_name
                 )
             await self.accept()
@@ -68,7 +68,7 @@ class TaxiConsumer(AsyncJsonWebsocketConsumer):
         user_group = await self._get_user_group(user)
         if user_group == 'driver':
             await self.channel_layer.group_discard(
-                group='test',
+                group='drivers',
                 channel=self.channel_name
             )
         await super().disconnect(code)
