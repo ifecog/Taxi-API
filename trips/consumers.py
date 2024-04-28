@@ -54,6 +54,12 @@ class TaxiConsumer(AsyncJsonWebsocketConsumer):
             'data': trip_data
         })
         
+        # Add rider to trip group
+        await self.channel_layer.group_add(
+            group=f'{trip.id}',
+            channel=self.channel_name
+        )
+        
         await self.send_json({
             'type': 'echo.message',
             'data': trip_data,
