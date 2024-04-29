@@ -10,6 +10,7 @@ from rest_framework_simplejwt.tokens import AccessToken
 
 from taxi.routing import application
 
+from trips.models import Trip
 
 User = get_user_model()
 
@@ -37,6 +38,27 @@ def create_user(email, password, group='rider'):
     access = AccessToken.for_user(user)
     
     return user, access
+
+
+@database_sync_to_async
+def create_trip(
+    pickup_latitude='37.8849',
+    pickup_longitude='-122.6194',
+    dropoff_latitude='37.9072',
+    dropoff_longitude='-122.4156',
+    status='REQUESTED',
+    rider=None,
+    driver=None
+):
+    return Trip.objects.create(
+        pickup_latitude=pickup_latitude,
+        pickup_longitude=pickup_longitude,
+        dropoff_latitude=dropoff_latitude,
+        dropoff_longitude=dropoff_longitude,
+        status=status,
+        rider=rider,
+        driver=driver
+    )
 
 
 @pytest.mark.asyncio
@@ -247,4 +269,31 @@ class TestWebSocket:
         response = await communicator.receive_json_from()
         assert response == message
 
+        await communicator.disconnect()
+        
+    
+    async def test_join_trip_group_on_connect(self, settings):
+        settings.CHANNEL_LAYERS = TEST_CHANNEL_LAYERS
+        user, access = await create_user(
+            'test.user@example.com', 'pAssw0rd', 'rider'
+        )
+        trip = await create_trip(rider=user)
+        communicator = WebsocketCommunicator(
+            application=application,
+            path=f'/taxi/?token={access}'
+        )
+        connected, _ = await communicator.connect()
+    
+        # Send a message to the trip group.
+        message = {
+            'type': 'echo.message',
+            'data': 'This is a test message.',
+        }
+        channel_layer = get_channel_layer()
+        await channel_layer.group_send(f'{trip.id}', message=message)
+    
+        # Rider receives message.
+        response = await communicator.receive_json_from()
+        assert response == message
+    
         await communicator.disconnect()
