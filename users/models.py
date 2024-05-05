@@ -18,6 +18,12 @@ class User(AbstractUser):
     
     objects = CustomUserManager()
     
+    
+    @property
+    def group(self):
+        groups = self.groups.all()
+        return groups[0].name if groups else None
+    
     def __str__(self):
         return self.email
     

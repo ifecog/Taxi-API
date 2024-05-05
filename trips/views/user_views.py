@@ -1,6 +1,6 @@
 from django.contrib.auth import get_user_model
 from django.contrib.auth.hashers import make_password
-from django.shortcuts import render, get_object_or_404
+from django.contrib.auth.models import Group
 
 from rest_framework import viewsets, status
 from rest_framework.response import Response
@@ -12,18 +12,16 @@ from trips.serializers.user_serializers import UserSerializer, UserSerializerWit
 
 
 User = get_user_model()
-# Create your views here.
+
 
 @api_view(['POST'])
 def signup(request):
     serializer = UserSerializerWithToken(data=request.data)
     serializer.is_valid(raise_exception=True)
     
-    # Check if 'password' and 'confirm_password' fields are present in request data
     if 'password' not in request.data or 'confirm_password' not in request.data:
         return Response({'error': 'Both password and confirm_password are required.'}, status=status.HTTP_400_BAD_REQUEST)
     
-    # Check if 'password' and 'confirm_password' match
     if request.data['password'] != request.data['confirm_password']:
         return Response({'error': 'Passwords do not match.'}, status=status.HTTP_400_BAD_REQUEST)
     
@@ -37,6 +35,12 @@ def signup(request):
     
     try:
         user = User.objects.create_user(**user_data)
+        
+        group_data = request.data.get('group')
+        if group_data:
+            group, _ = Group.objects.get_or_create(name=group_data)
+            user.groups.add(group)
+        
         serializer = UserSerializer(user)
         return Response(serializer.data, status=status.HTTP_201_CREATED)
     except Exception as e:
