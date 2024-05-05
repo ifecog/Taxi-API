@@ -10,13 +10,13 @@ from trips.serializers.trip_serializers import *
 from trips.models import Trip
 
 
-def create_first_trip():
-    return Trip.objects.create(pickup_latitude=37.7749, pickup_longitude=-122.4194, dropoff_latitude=37.8072, dropoff_longitude=-122.4056
+def create_first_trip(self):
+    return Trip.objects.create(pickup_latitude=37.7749, pickup_longitude=-122.4194, dropoff_latitude=37.8072, dropoff_longitude=-122.4056, rider=self.user
     )
 
 
-def create_second_trip():
-    return Trip.objects.create(pickup_latitude=37.8849, pickup_longitude=-122.6194, dropoff_latitude=37.9072, dropoff_longitude=-122.4156
+def create_second_trip(self):
+    return Trip.objects.create(pickup_latitude=37.8849, pickup_longitude=-122.6194, dropoff_latitude=37.9072, dropoff_longitude=-122.4156, rider=self.user
     )
 
 
@@ -24,16 +24,16 @@ def create_second_trip():
 class HttpTripTest(APITestCase):
     
     def setUp(self):
-        user = create_user()
+        self.user = create_user()
         response = self.client.post(reverse('user-signin'), data={
-            'email': user.email,
+            'email': self.user.email,
             'password': PASSWORD
         })
         self.access = response.data['access']
     
         
     def test_user_can_list_trips(self):
-        trips = [create_first_trip(), create_second_trip()]
+        trips = [create_first_trip(self), create_second_trip(self)]
         
         response = self.client.get(reverse('trips-list'), HTTP_AUTHORIZATION=f'Bearer {self.access}')
         
@@ -46,7 +46,7 @@ class HttpTripTest(APITestCase):
         
     
     def test_user_can_view_trip_detail(self):
-        trip = create_first_trip()
+        trip = create_first_trip(self)
         
         expected_url = reverse('trip-details', kwargs={'trip_id': trip.id})
         
